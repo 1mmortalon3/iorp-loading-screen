@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Imperial Order Roleplay — Loading</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="loading-screen">
+    <div class="background" aria-hidden="true"></div>
+    <div class="pulse-ring ring-one" aria-hidden="true"></div>
+    <div class="pulse-ring ring-two" aria-hidden="true"></div>
+    <div class="scanlines" aria-hidden="true"></div>
+    <div class="scan-sweep" aria-hidden="true"></div>
+    <div class="vignette" aria-hidden="true"></div>
+
+    <section class="live-overlay" aria-live="polite">
+      <div id="statusText" class="status-text">Establishing secure uplink to Imperial Center...</div>
+      <div id="downloadText" class="download-text">Waiting for Garry's Mod loading hooks...</div>
+      <div class="progress-shell">
+        <div id="progressFill" class="progress-fill"></div>
+        <div class="progress-spark"></div>
+      </div>
+      <div class="meta-row">
+        <span id="serverName">IMPERIAL ORDER ROLEPLAY</span>
+        <span id="percentText">0%</span>
+        <span id="elapsed">00:00:00</span>
+      </div>
+      <div class="meta-row secondary">
+        <span>GAMEMODE // <b id="gameMode">HELIX</b></span>
+        <span>MAP // <b id="mapName">AWAITING</b></span>
+        <span>SLOTS // <b id="slots">-- / --</b></span>
+      </div>
+    </section>
+  </main>
+  <script src="loading.js"></script>
+</body>
+</html>
