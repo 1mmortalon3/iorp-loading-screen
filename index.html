@@ -584,6 +584,148 @@ button, input { font: inherit; }
 @media (prefers-reduced-motion: reduce) {
     #bg, #crestFrame:after, #linkPulse, #fill:after, .particle { animation: none !important; }
 }
+
+/* Screenshot-based layout correction */
+#bg {
+    transform: none;
+    animation: none;
+}
+#vignette {
+    background:
+        linear-gradient(180deg, rgba(0,0,0,0.08) 0%, transparent 22%, transparent 69%, rgba(0,0,0,0.34) 100%),
+        radial-gradient(circle at center, transparent 44%, rgba(0,0,0,0.28) 100%);
+}
+#redGlow {
+    background: linear-gradient(180deg, rgba(132,10,18,0.07), transparent 22%, transparent 82%, rgba(132,10,18,0.08));
+}
+#particles,
+#briefing,
+#linkStatus {
+    display: none;
+}
+#topHeaderReplacement {
+    height: 92px;
+    background:
+        linear-gradient(90deg, rgba(5,5,7,0.98), rgba(28,5,9,0.88) 35%, rgba(7,7,9,0.97) 50%, rgba(28,5,9,0.88) 65%, rgba(5,5,7,0.98));
+    border-bottom-color: rgba(210,38,48,0.58);
+    box-shadow: 0 7px 22px rgba(0,0,0,0.42);
+}
+#crestFrame {
+    width: 76px;
+    height: 76px;
+    border-color: rgba(255,255,255,0.20);
+    box-shadow: 0 0 0 4px rgba(210,38,48,0.05), 0 0 18px rgba(210,38,48,0.20);
+}
+#crestFrame:after {
+    inset: -6px;
+    animation: none;
+}
+#topLogo {
+    width: 60px;
+    height: 60px;
+}
+.headerRule {
+    top: 45px;
+    width: min(32vw, 510px);
+}
+.headerRule.left { right: calc(50% + 57px); }
+.headerRule.right { left: calc(50% + 57px); }
+#orderLabel {
+    top: 28px;
+}
+#musicPanel {
+    top: 13px;
+    right: 28px;
+    width: 372px;
+    min-height: 66px;
+    padding: 10px 12px;
+    background: rgba(7,8,11,0.72);
+    border-color: rgba(255,255,255,0.12);
+    border-right-color: var(--imperial-red);
+    box-shadow: none;
+}
+.musicIcon {
+    flex-basis: 38px;
+    width: 38px;
+    height: 38px;
+}
+.musicLabel {
+    white-space: nowrap;
+}
+#trackName {
+    max-width: 188px;
+}
+#hud {
+    left: 28px;
+    right: 430px;
+    bottom: 22px;
+    width: auto;
+    padding: 14px 18px 15px;
+    background: linear-gradient(135deg, rgba(7,8,11,0.93), rgba(3,3,5,0.88));
+    border: 1px solid rgba(255,255,255,0.12);
+    border-left: 3px solid var(--imperial-red);
+    box-shadow: 0 12px 34px rgba(0,0,0,0.48);
+    backdrop-filter: blur(5px);
+}
+#hud:after {
+    content: '';
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    width: 90px;
+    height: 1px;
+    background: var(--imperial-red);
+}
+#titleRow {
+    display: none;
+}
+#statusLine {
+    margin-bottom: 3px;
+}
+#status {
+    font-size: 16px;
+}
+#filename {
+    margin: 0 0 9px 17px;
+}
+#bar {
+    height: 7px;
+}
+#meta {
+    margin-top: 10px;
+    grid-template-columns: minmax(230px, 1.8fr) repeat(3, minmax(105px, 1fr));
+}
+.metaitem {
+    padding: 7px 9px;
+}
+@media (max-width: 1250px) {
+    #orderLabel span { display: none; }
+    #musicPanel { width: 330px; right: 18px; }
+    #trackName { max-width: 150px; }
+    #hud { right: 405px; }
+    #meta { grid-template-columns: 1.6fr 1fr 1fr; }
+    #meta .metaitem:nth-child(4) { display: none; }
+}
+@media (max-width: 930px) {
+    #orderLabel { display: none; }
+    #musicPanel {
+        top: 108px;
+        right: 18px;
+        width: 310px;
+    }
+    #hud {
+        left: 18px;
+        right: 18px;
+        bottom: 105px;
+    }
+}
+@media (max-width: 620px) {
+    #musicPanel { left: 14px; right: 14px; width: auto; }
+    #trackName { max-width: 150px; }
+    #hud { left: 14px; right: 14px; padding: 12px 14px; }
+    #meta { grid-template-columns: 1fr 1fr; }
+    #meta .metaitem:nth-child(3) { display: none; }
+}
 </style>
 <script type="text/javascript">
 var filesNeeded = 0;
@@ -737,10 +879,8 @@ window.onload = function() {
     setText('tipIndex', 'Directive 01 / ' + padNumber(loadingTips.length));
     updateProgress();
     byId('loadingMusic').volume = 0.35;
-    createParticles();
     updateMusicUI();
     playMusic();
-    window.setInterval(rotateTip, 8500);
 };
 </script>
 </head>
