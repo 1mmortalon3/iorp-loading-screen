@@ -27,10 +27,28 @@ html, body {
     background-repeat: no-repeat;
     background-size: cover;
 }
+#bgVideo {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: #000;
+    opacity: 0;
+    transition: opacity 0.7s ease;
+    pointer-events: none;
+}
+#bgVideo.ready {
+    opacity: 1;
+}
 #vignette {
     position: fixed;
+    z-index: 2;
     inset: 0;
     background: rgba(0,0,0,0.24);
+    pointer-events: none;
 }
 #scanlines {
     position: fixed;
@@ -879,6 +897,12 @@ window.onload = function() {
     setText('tipIndex', 'Directive 01 / ' + padNumber(loadingTips.length));
     updateProgress();
     byId('loadingMusic').volume = 0.35;
+    var backgroundVideo = byId('bgVideo');
+    if (backgroundVideo) {
+        backgroundVideo.muted = true;
+        var videoPlayback = backgroundVideo.play();
+        if (videoPlayback && videoPlayback.catch) videoPlayback.catch(function() {});
+    }
     updateMusicUI();
     playMusic();
 };
@@ -886,6 +910,9 @@ window.onload = function() {
 </head>
 <body>
 <div id="bg"></div>
+<video id="bgVideo" autoplay muted loop playsinline preload="auto" oncanplay="this.className='ready'">
+    <source src="dark-lords-army.webm" type="video/webm">
+</video>
 <div id="vignette"></div>
 <div id="redGlow"></div>
 <div id="particles" aria-hidden="true"></div>
