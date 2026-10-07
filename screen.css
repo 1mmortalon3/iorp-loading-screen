@@ -5,6 +5,7 @@
     --muted: #9b9fa9;
     --line: rgba(255,255,255,.13);
     --edge: 48px;
+    --download-space: 120px;
 }
 * { box-sizing: border-box; }
 html, body {
@@ -80,7 +81,7 @@ button { -webkit-tap-highlight-color: transparent; }
 #tipText.changing { opacity: 0; }
 #deploymentDock {
     position: fixed; z-index: 5;
-    left: var(--edge); right: var(--edge); bottom: 38px;
+    left: var(--edge); right: var(--edge); bottom: var(--download-space);
     display: flex; align-items: stretch; gap: 20px;
 }
 .panel {
@@ -156,11 +157,11 @@ button { -webkit-tap-highlight-color: transparent; }
 #volumeValue { flex: 0 0 30px; text-align: right; font-size: 11px; font-variant-numeric: tabular-nums; }
 .srOnly { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
 @keyframes waiting { 0% { transform: translateX(-110%); } 50% { transform: translateX(250%); } 100% { transform: translateX(560%); } }
-@media (min-width: 1700px) { :root { --edge: 64px; } #deploymentDock { bottom: 48px; } #masthead { top: 45px; } .frameLine { top: 132px; } #musicPanel { flex-basis: 380px; } }
+@media (min-width: 1700px) { :root { --edge: 64px; } #masthead { top: 45px; } .frameLine { top: 132px; } #musicPanel { flex-basis: 380px; } }
 @media (max-width: 1200px) {
     :root { --edge: 32px; }
     #musicPanel { flex-basis: 310px; padding-left: 20px; padding-right: 20px; }
-    #deploymentDock { gap: 16px; bottom: 30px; }
+    #deploymentDock { gap: 16px; }
     #hud { padding-left: 20px; padding-right: 20px; }
     .brandName { font-size: 18px; }
     #hero { width: 460px; }
@@ -174,7 +175,7 @@ button { -webkit-tap-highlight-color: transparent; }
     #hero h1 { font-size: 56px; }
     .eyebrow { margin-bottom: 14px; }
     .heroSubtitle { margin-top: 18px; }
-    #briefing { margin-top: 25px; }
+    #briefing { display: none; }
     #tipText { font-size: 13px; }
 }
 @media (max-width: 900px) {
@@ -183,7 +184,7 @@ button { -webkit-tap-highlight-color: transparent; }
     .connectionLabel { display: none; }
     .elapsed { margin-left: 4px; padding-left: 16px; }
     .frameLine { top: 101px; }
-    #deploymentDock { flex-direction: column; bottom: 24px; gap: 12px; }
+    #deploymentDock { flex-direction: column; gap: 12px; }
     #musicPanel { flex: 0 0 auto; flex-direction: row; align-items: center; padding: 17px 20px; gap: 20px; }
     .musicHeading { display: none; }
     .musicTrack { margin: 0; flex: 1; }
@@ -213,7 +214,6 @@ button { -webkit-tap-highlight-color: transparent; }
     .eyebrow { font-size: 8px; letter-spacing: 2px; margin-bottom: 13px; }
     .heroSubtitle { font-size: 8px; letter-spacing: 1.9px; margin-top: 15px; }
     .heroSubtitle b { margin: 0 4px; }
-    #deploymentDock { bottom: 20px; }
     #hud { padding: 18px; }
     .hudHeading { gap: 10px; }
     #status { font-size: 16px; }
@@ -234,7 +234,8 @@ button { -webkit-tap-highlight-color: transparent; }
     #musicControl { width: 35px; }
     .musicActions { gap: 5px; }
 }
-@media (max-height: 680px) and (max-width: 900px) { #hero { display: none; } }
+@media (max-height: 680px) { #hero { display: none; } }
+@media (max-height: 780px) and (max-width: 900px) { #hero { display: none; } }
 @media (max-height: 560px) and (min-width: 561px) {
     :root { --edge: 20px; }
     #hero { display: none; }
@@ -244,7 +245,7 @@ button { -webkit-tap-highlight-color: transparent; }
     .brandName { font-size: 14px; letter-spacing: 2px; }
     .brandSub { font-size: 8px; margin-top: 5px; }
     .frameLine { top: 77px; }
-    #deploymentDock { flex-direction: row; bottom: 18px; gap: 12px; }
+    #deploymentDock { flex-direction: row; gap: 12px; }
     #hud { padding: 15px 17px; }
     #status { font-size: 15px; }
     #filename { display: none; }
@@ -275,6 +276,17 @@ button { -webkit-tap-highlight-color: transparent; }
     #hero { display: none; }
     #masthead { top: 14px; }
     .frameLine { top: 73px; }
-    #deploymentDock { top: 91px; bottom: 14px; display: block; overflow-y: auto; }
+    #deploymentDock { top: 91px; bottom: var(--download-space); display: block; overflow-y: auto; }
     #musicPanel { margin-top: 12px; }
+}
+@media (max-height: 420px) and (min-width: 561px) {
+    #masthead { top: 12px; }
+    .crest { width: 36px; height: 36px; flex-basis: 36px; }
+    #topLogo { width: 27px; height: 27px; }
+    .frameLine { display: none; }
+    #hud, #musicPanel { padding-top: 12px; padding-bottom: 12px; }
+    #status { font-size: 14px; }
+    #bar { margin-top: 12px; }
+    #meta { flex-wrap: nowrap; margin-top: 11px; padding-top: 10px; }
+    #meta .metaitem:nth-child(n+3) { display: none; }
 }
